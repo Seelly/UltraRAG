@@ -28,7 +28,8 @@
 
 *更新日志* 🔥
 
-- [2025.09.01] 我们录了一期上手视频，手把手教你安装 UltraRAG 并跑通完整的 RAG 👉[📺 bilibili](https://www.bilibili.com/video/BV1B9apz4E7K/?share_source=copy_web&vd_source=7035ae721e76c8149fb74ea7a2432710)
+- [2025.09.09] 我们发布了一期上手教程，带你在本地搭建轻量级 DeepResearch Pipeline👉 [📖 博客](https://github.com/OpenBMB/UltraRAG/blob/page/project/blog/cn/01_build_light_deepresearch.md)
+- [2025.09.01] 我们录了一期上手视频，手把手教你安装 UltraRAG 并跑通完整的 RAG 👉 |[📺 bilibili](https://www.bilibili.com/video/BV1B9apz4E7K/?share_source=copy_web&vd_source=7035ae721e76c8149fb74ea7a2432710)|[📖 博客](https://github.com/OpenBMB/UltraRAG/blob/page/project/blog/cn/00_Installing_and_Running_RAG.md)|
 - [2025.08.28] 🎉 发布 UltraRAG 2.0! UltraRAG 2.0 全新升级：几十行代码实现高性能 RAG，让科研专注思想创新！
 - [2025.01.23] 发布 UltraRAG! 让大模型读懂善用知识库！我们保留了UltraRAG 1.0的代码，可以点击 [v1](https://github.com/OpenBMB/UltraRAG/tree/v1) 查看。
 
@@ -82,7 +83,7 @@
 
 ## 安装
 
-使用 Conda 创建虚拟环境：
+### 使用 Conda 创建虚拟环境：
 
 ```shell
 conda create -n ultrarag python=3.11
@@ -121,19 +122,47 @@ uv pip install faiss-gpu-cu12
 # 其他 CUDA 版本请安装对应的包（例如：CUDA 11.x 使用 faiss-gpu-cu11）
 
 # 如需使用infinity_emb进行语料库编码和索引：
-uv pip install -e ."[infinity_emb]"
+uv pip install -e ".[infinity_emb]"
 
 # 如需使用lancedb向量数据库：
-uv pip install -e ."[lancedb]"
+uv pip install -e ".[lancedb]"
 
 # 如需使用vLLM服务部署模型：
-uv pip install -e ."[vllm]"
+uv pip install -e ".[vllm]"
 
 # 如需使用语料库文档解析功能：
-uv pip install -e ."[corpus]"
+uv pip install -e ".[corpus]"
 
 # ====== 安装所有依赖（除faiss） ======
-uv pip install -e ."[all]"
+uv pip install -e ".[all]"
+```
+
+运行以下命令验证安装是否成功：
+
+```shell
+# 成功运行显示'Hello, UltraRAG 2.0!' 欢迎语
+ultrarag run examples/sayhello.yaml
+```
+
+### 使用 Docker 构建运行环境
+
+通过 git 克隆项目到本地或服务器：
+
+```shell
+git clone https://github.com/OpenBMB/UltraRAG.git
+cd UltraRAG
+```
+
+构建镜像：
+
+```shell
+docker build -t ultrarag:v2.0.0-beta .
+```
+
+运行交互环境：
+
+```shell
+docker run -it --rm --gpus all ultrarag:v2.0.0-beta bash
 ```
 
 运行以下命令验证安装是否成功：
@@ -226,6 +255,14 @@ UltraRAG 2.0 开箱即用，内置支持当前 RAG 领域最常用的 **公开�
 ## 支持我们
 
 如果您觉得本项目对您的研究有所帮助，欢迎点亮一颗 ⭐ 来支持我们！
+
+<a href="https://star-history.com/#OpenBMB/UltraRAG&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=OpenBMB/UltraRAG&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=OpenBMB/UltraRAG&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=OpenBMB/UltraRAG&type=Date" />
+ </picture>
+</a>
 
 ## 联系我们
 

@@ -28,6 +28,8 @@ Less Code, Lower Barrier, Faster Deployment
 
 *Latest News* 🔥
 
+- [2025.09.09] We’ve released a hands-on tutorial to guide you through building a lightweight DeepResearch pipeline locally 👉 [📖 blog](https://github.com/OpenBMB/UltraRAG/blob/page/project/blog/en/01_build_light_deepresearch.md)
+- [2025.09.01] We recorded a beginner-friendly tutorial video that walks you through installing UltraRAG and running a complete RAG workflow 👉 |[📺 bilibili](https://www.bilibili.com/video/BV1B9apz4E7K/?share_source=copy_web&vd_source=7035ae721e76c8149fb74ea7a2432710)|[📖 blog](https://github.com/OpenBMB/UltraRAG/blob/page/project/blog/en/00_Installing_and_Running_RAG.md)|
 - [2025.08.28] 🎉 Released UltraRAG 2.0! UltraRAG 2.0 is fully upgraded: build high-performance RAG with just a few dozen lines of code, empowering researchers to focus on ideas and innovation!
 - [2025.01.23] UltraRAG Released! Enabling large models to better comprehend and utilize knowledge bases. The UltraRAG 1.0 code is still available at [v1](https://github.com/OpenBMB/UltraRAG/tree/v1).
 
@@ -80,7 +82,7 @@ By deeply integrating the **MCP architecture** with **native workflow control**,
 
 ## Installation
 
-Create a virtual environment using Conda:
+### Create a virtual environment using Conda:
 
 ```shell
 conda create -n ultrarag python=3.11
@@ -119,25 +121,53 @@ uv pip install faiss-gpu-cu12
 # For other CUDA versions, install the corresponding package (e.g., faiss-gpu-cu11 for CUDA 11.x).
 
 # If you want to use infinity_emb for corpus encoding and indexing:
-uv pip install -e ."[infinity_emb]"
+uv pip install -e ".[infinity_emb]"
 
 # If you want to use lancedb vector database:
-uv pip install -e ."[lancedb]"
+uv pip install -e ".[lancedb]"
 
 # If you want to deploy models with vLLM service:
-uv pip install -e ."[vllm]"
+uv pip install -e ".[vllm]"
 
 # If you want to use corpus document parsing functionality:
-uv pip install -e ."[corpus]"
+uv pip install -e ".[corpus]"
 
 # ====== Install all dependencies (except faiss) ======
-uv pip install -e ."[all]"
+uv pip install -e ".[all]"
 ```
 
 Run the following command to verify a successful installation:
 
 ```shell
 # If the installation was successful, you should see the welcome message 'Hello, UltraRAG 2.0!'
+ultrarag run examples/sayhello.yaml
+```
+
+### Build and Run Environment with Docker
+
+Clone the project to your local machine or server via git:
+
+```shell
+git clone https://github.com/OpenBMB/UltraRAG.git
+cd UltraRAG
+```
+
+Build the image:
+
+```shell
+docker build -t ultrarag:v2.0.0-beta .
+```
+
+Run an interactive environment:
+
+```shell
+docker run -it --rm --gpus all ultrarag:v2.0.0-beta bash
+```
+
+Run the following command to verify whether the installation is successful:
+
+```shell
+# If successful, it will display the welcome message 'Hello, UltraRAG 2.0!'
 ultrarag run examples/sayhello.yaml
 ```
 
@@ -222,6 +252,14 @@ You can contribute by following the standard process: **fork this repository, su
 ## Support Us
 
 If you find this repository helpful for your research, please consider giving us a ⭐ to show your support.
+
+<a href="https://star-history.com/#OpenBMB/UltraRAG&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=OpenBMB/UltraRAG&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=OpenBMB/UltraRAG&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=OpenBMB/UltraRAG&type=Date" />
+ </picture>
+</a>
 
 
 ## Contact Us
